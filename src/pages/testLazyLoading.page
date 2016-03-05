@@ -1,0 +1,43 @@
+<apex:page controller="testLazyLoading">
+<apex:form >
+ <script>
+ 
+ oncompletetab1();
+ oncompletetab2();
+     function oncompletetab1()
+     {
+        
+         setTimeout(function() 
+          {               
+              loadtab2();
+          }, 500);  
+     
+     }
+     
+     function oncompletetab2()
+     {
+        
+         setTimeout(function() 
+          {               
+              loadtab3();
+          }, 1000);  
+     
+     }
+     
+     
+ 
+ </script>
+ 
+ <apex:actionFunction name="loadtab2" action="{!loadtab2}" rerender="tabPanel"/>
+ <apex:actionFunction name="loadtab3" action="{!loadtab3}" rerender="tabPanel"/>
+ 
+ <apex:tabPanel id="tabPanel">
+ <apex:tab rendered="{!tab1}" id="tab1"></apex:tab>
+ <apex:tab rendered="{!tab2}"  id="tab2" ></apex:tab>
+ <apex:tab rendered="{!tab3}"  id="tab3"></apex:tab>
+ 
+ 
+ </apex:tabPanel>
+ </apex:form>
+ 
+</apex:page>
