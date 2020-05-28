@@ -1,0 +1,4 @@
+<aura:component >
+    <c:helloHeading message="My name is Merul."/>
+   
+</aura:component>

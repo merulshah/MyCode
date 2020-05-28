@@ -1,0 +1,5 @@
+<aura:component >
+    <aura:attribute name="message" type="String"/>
+	<c:helloMessage customMessage="{!$Label.c.Greeting+v.message}"/>
+    
+</aura:component>

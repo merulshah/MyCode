@@ -1,0 +1,9 @@
+<aura:component>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="expense" type="Expense__c"></aura:attribute>
+    {!v.expense.Name}
+     
+    <lightning:formattedDateTime value="{!v.expense.Date__c}"/>
+    
+   
+</aura:component>

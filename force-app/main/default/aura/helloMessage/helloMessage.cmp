@@ -1,0 +1,4 @@
+<aura:component >
+    <aura:attribute name="customMessage" type="String"/>
+    <p>inner most {!v.customMessage} </p>
+</aura:component>

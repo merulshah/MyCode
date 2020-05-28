@@ -1,0 +1,94 @@
+<aura:component controller="ExpensesController">
+    <aura:attribute name="newExpense" type="Expense__c"
+                    default="{   
+                                 'sobjectType': 'Expense__c',
+                                 'Name': '',
+                                 'Amount__c': 0,
+                                 'Client__c': '',
+                                 'Date__c': '',
+                                 'Reimbursed__c': false 
+                             }"/>
+    
+    <!--onload....{!this} is very inportant.-->
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    
+    <!-- Used as container for helper-->
+    <aura:attribute name="expenses" type="Expense__c[]"/>
+    <!--Display of expenses-->
+    <aura:iteration items="{!v.expenses}" var="expense">
+        <c:expenseItem expense="{!expense}" ></c:expenseItem>
+    </aura:iteration>
+    
+    <lightning:layout class="slds-page-header">
+        <lightning:layoutItem >
+            <lightning:icon iconName="standard:scan_card" alternativeText="My Expenses"/>
+        </lightning:layoutItem>
+        
+        <lightning:layoutItem padding="horizontal-large">
+            <div>
+                <h1 class="slds-text-heading--label">Expenses</h1>
+                <h2 class="slds-text-heading--medium">My Expenses</h2>
+            </div>
+        </lightning:layoutItem>
+        
+    </lightning:layout>
+    
+    <!--New Form-->
+    <lightning:layout class="slds-page-header">
+        <lightning:layoutItem >
+            <!-- CREATE NEW EXPENSE -->
+            <div aria-labelledby="newexpenseform">
+                <!-- BOXED AREA -->
+                
+                <fieldset class="slds-box slds-theme--default slds-container--small">
+                    <legend id="newexpenseform" class="slds-text-heading--small 
+                                                       slds-p-vertical--medium">
+                        Add Expense
+                    </legend>
+                    
+                    <!-- CREATE NEW EXPENSE FORM -->
+                    <form class="slds-form--stacked">          
+                        <lightning:input aura:id="expenseform" label="Expense Name"
+                                         name="expensename"
+                                         value="{!v.newExpense.Name}"
+                                         required="true"
+                                         messageWhenValueMissing="Did you forget me?"/> 
+                        <!--Diplays message by messageWhenValueMissing....explre othe also.-->
+                        <lightning:input type="number" aura:id="expenseform" label="Amount"
+                                         name="expenseamount"
+                                         min="0.1"
+                                         formatter="currency"
+                                         step="0.01"
+                                         value="{!v.newExpense.Amount__c}"
+                                         messageWhenRangeUnderflow="Enter an amount that's at least $0.10."/>
+                        <lightning:input aura:id="expenseform" label="Client"
+                                         name="expenseclient"
+                                         value="{!v.newExpense.Client__c}"
+                                         placeholder="ABC Co."/>
+                        <lightning:input type="date" aura:id="expenseform" label="Expense Date"
+                                         name="expensedate"
+                                         value="{!v.newExpense.Date__c}"/>
+                       
+                        
+                        <lightning:input type="toggle" label="Reimbursed?" 
+                                         name="expreimbursed"
+                                         checked="{!v.newExpense.Reimbursed__c}"/>
+                        
+                        <lightning:button label="Create Expense" 
+                                          aura:id="crtExpBtn"
+                                          class="slds-m-top--medium"
+                                          variant="brand"
+                                          onclick="{!c.clickCreate}"/>
+                        
+                    </form>
+                    <!--  CREATE NEW EXPENSE FORM -->
+                </fieldset>
+                <!-- / BOXED AREA -->
+            </div>
+            <!-- / CREATE NEW EXPENSE -->
+        </lightning:layoutItem>
+        
+        
+    </lightning:layout>
+    
+</aura:component>

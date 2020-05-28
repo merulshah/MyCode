@@ -1,0 +1,9 @@
+<aura:component >
+	 <aura:attribute name="message" type="String"/>
+     <p> Message is: {!v.message}</p>
+    
+      <div>
+          <lightning:button label="this is first click" onclick="{!c.handleClick3}"/>
+      </div>    
+    
+</aura:component>

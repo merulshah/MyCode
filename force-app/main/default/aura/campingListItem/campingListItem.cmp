@@ -1,0 +1,22 @@
+<aura:component >
+    <!--
+		required is mandatory beacuse if the user dont pass the component will collapse.
+	-->
+   
+    <aura:attribute name ="item" type ="Camping_Item__c"
+                    required ="true" default = "{'sObjectType':'Camping_Item__c',
+                                                                'Name':'Item1',
+                                                                'Quantity__c':10,
+                                                                'Price__c':100,
+                                                                'Packed__c':false}"/>
+    <p>{!v.item.Name}</p> 
+    <p><lightning:formattedNumber value = "{!v.item.Price__c}" style = "currency" /></p>
+    <p><lightning:formattedNumber value = "{!v.item.Quantity__c}"/></p>
+    <p><lightning:input type ="toggle" checked ="{!v.item.Packed__c}" /></p>
+    
+    <p><lightning:button label="Packed!" onclick="{!c.packItem}"/></p>
+        
+        
+    
+        
+	</aura:component>
